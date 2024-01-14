@@ -29,4 +29,6 @@
     #include <SFML/System.h>
     #include <SFML/Window.h>
 
+int show_usage(void);
+
 #endif
