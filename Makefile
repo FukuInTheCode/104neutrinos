@@ -20,11 +20,11 @@ SRC	= $(shell find src/ -type f -name "*.c")
 
 OBJ	= $(SRC:src/%.c=obj/%.o)
 
-RED = \033[0;31m
+RED = \033[1;31m
 
-GREEN = \033[0;32m
+GREEN = \033[1;32m
 
-BLUE = \033[0;34m
+BLUE = \033[1;34m
 
 NC = \033[0m
 
@@ -40,11 +40,11 @@ obj/%.o: src/%.c
 	@$(CC) -c -o $@ $< $(CFLAGS)
 
 clean:
-	@echo -e "$(RED)Cleaning objects.$(NC)"
+	@if [ -d obj/ ]; then echo -e "$(RED)Cleaning objects.$(NC)"; fi
 	@rm -rf obj
 
 fclean: clean
-	@echo -e "$(RED)Cleaning binary.$(NC)"
+	@if [ -e "$(NAME)" ]; then echo -e "$(RED)Cleaning binary.$(NC)"; fi
 	@rm -f $(NAME)
 
 re: fclean all
