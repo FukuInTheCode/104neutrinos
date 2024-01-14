@@ -30,5 +30,7 @@
     #include <SFML/Window.h>
 
 int show_usage(void);
+int handle_args(char **);
+int do_loop(int , double, double, double);
 
 #endif

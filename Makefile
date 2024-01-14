@@ -14,7 +14,7 @@ WFLAGS = -Wall -Wextra -Wno-unused-value -Wno-sign-compare 	\
 
 LIBS = -lm
 
-CFLAGS = -I./include/ $(WFLAGS)
+CFLAGS = -I./include/ $(WFLAGS) $(LIBS)
 
 SRC	= $(shell find src/ -type f -name "*.c")
 
