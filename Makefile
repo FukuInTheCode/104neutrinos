@@ -20,12 +20,18 @@ SRC	= $(shell find src/ -type f -name "*.c")
 
 OBJ	= $(SRC:src/%.c=obj/%.o)
 
+RED = \033[0;31m
+
+NC = \033[0m
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	@echo -e "$(RED)Compiling binary...$(NC)"
 	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
 
 obj/%.o: src/%.c
+	@echo -e "$(RED)Compiling $<...$(NC)"
 	@mkdir -p $(dir $@)
 	@$(CC) -c -o $@ $< $(CFLAGS)
 
