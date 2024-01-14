@@ -31,6 +31,6 @@
 
 int show_usage(void);
 int handle_args(char **);
-int do_loop(int , double, double, double);
+int do_loop(long *, double *, double *, double *);
 
 #endif
