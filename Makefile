@@ -9,20 +9,28 @@ NAME   = 104neutrinos
 
 CC	   = gcc
 
-CFLAGS = -Wall -Wextra -Wno-unused-value -Wno-sign-compare \
-	-Wno-unused-parameter -I./include
+WFLAGS = -Wall -Wextra -Wno-unused-value -Wno-sign-compare 	\
+			-Wno-unused-parameter 							\
 
-SRC	= src/*.c
+LIBS = -lm
 
-OBJ	= $(SRC:.c=.o)
+CFLAGS = -I./include/ $(WFLAGS)
+
+SRC	= $(shell find src/ -type f -name "*.c")
+
+OBJ	= $(SRC:src/%.c=obj/%.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS) -lm
+	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
+
+obj/%.o: src/%.c
+	@mkdir -p $(dir $@)
+	@$(CC) -c -o $@ $< $(CFLAGS)
 
 clean:
-	@rm -f $(OBJ)
+	@rm -rf obj
 
 fclean: clean
 	@rm -f $(NAME)
